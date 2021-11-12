@@ -18,11 +18,9 @@ class clsSQLConnection
     $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     }
 
-    public function GetData()
+    public function GetData($conn)
     {
         $conn;
-        $mysqlObj = new clsSQLConnection();
-        $mysqlObj->CreateConnection($conn);
         $TableName = 'Users';
         $sessionID = $_COOKIE['userID'];
         $query = "Select userName, dateTimeStamp, message, sessionID from $TableName order by dateTimeStamp desc limit 100";
@@ -49,11 +47,9 @@ class clsSQLConnection
         }
     }
 
-    public function SendData()
+    public function SendData($conn)
     {
         $conn;
-        $mysqlObj = new clsSQLConnection();
-        $mysqlObj->CreateConnection($conn);
         $TableName = 'Users';
         $message = $_POST["f_Message"];
         $userName = $_POST["f_Username"];

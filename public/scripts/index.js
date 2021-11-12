@@ -12,7 +12,7 @@ $(document).ready(function () {
   setInterval(refreshMessage, 1000);
   function refreshMessage() {
     $.ajax({
-      url: "index.php",
+      url: "chat.php",
       type: "GET",
       dataType: "html",
       success: function (data) {

@@ -12,10 +12,10 @@
     WriteHeaders("Chat App");
 
     if(isset($_POST["f_Start"]))
-        DisplayChat($mysqlObj, $sessionID);
+        DisplayChat($mysqlObj, $sessionID, $conn);
     else 
         if (isset($_POST["f_Send"]))
-            DisplayChat($mysqlObj, $sessionID);
+            DisplayChat($mysqlObj, $sessionID, $conn);
         else
             if(isset($_POST["f_Home"]))
                 DisplayMainPage($mysqlObj, $sessionID);
@@ -47,7 +47,7 @@
         echo "</form>";
     }
 
-    function DisplayChat(&$mysqlObj, &$sessionID)
+    function DisplayChat(&$mysqlObj, &$sessionID, $conn)
     {
         $TableName = 'Users';
         $userName = $_POST["f_Username"];
@@ -56,7 +56,7 @@
 
         if (isset($_POST["f_Send"]))
         {
-            $mysqlObj->SendData();
+            $mysqlObj->SendData($conn);
         }
 
         echo "<div id=\"container\" class=\"container\">
@@ -74,7 +74,7 @@
         echo "
             </form>
             <div class=\"chatContainer\"><div id=\"chat\" class=\"chat\">";
-            $mysqlObj->GetData();
+            $mysqlObj->GetData($conn);
         echo "</div></div>";
         echo "</div>";
     }
