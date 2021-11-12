@@ -1,0 +1,168 @@
+/* 
+Colours Used:
+Red - #F23D7F
+Blue - #3D9DF2
+Light Blue - #79BAF2
+Green - #27F293
+White - #F2F2F2
+*/
+
+body {
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    background-color: #FFF;
+    color: #000;
+}
+
+h1 {
+    margin-bottom: 2em;
+}
+
+h2 {
+    margin: 1.2em;
+    color: #F2F2F2;
+    text-shadow: 1px 1px 1px black;
+}
+
+footer {
+    margin-top: auto;
+    padding: 1em;
+    background-color: #79BAF2;
+}
+
+button {
+    margin: 1em;
+    min-width: 5em;
+    font-weight: bold;
+    font-size: 1em;
+    color: #FFF;
+    background-color: #1B4E59;
+    border:none;
+    padding: 0.3em;
+    border-radius: 0.3em;
+}
+
+button:hover {
+    background-color: #F2F2F2;
+    color: #1B4E59;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    text-shadow: 1px 1px 1px black;
+    color: #F2F2F2;
+}
+
+a:hover {
+    color: #79BAF2;
+}
+
+.mainPage {
+    height: 50vh;
+    width: 55%;
+    margin: auto;
+    border-radius: 1em;
+    background-color: #3D9DF2;
+    font-size: 1.1em;
+}
+
+.userName {
+    text-decoration: underline #F23D7F;
+    text-underline-offset: 0.3em;
+}
+
+.datapair {
+    margin-top: 1em;
+    font-size: 1em;
+}
+
+.backBtn {
+    margin-left: 0.6em;
+    margin-top: 0.6em;
+    font-size: 2em;
+    color: #F2F2F2;
+    align-self: flex-start;
+}
+
+.container {
+    height: 120vh;
+    width: 55vw;
+    margin: 2em auto;
+    background-color: #3D9DF2;
+    border: 2px solid black;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatContainer {
+    overflow: hidden;
+    display: inline-block;
+    width: 95%;
+    margin: 1.5em auto;
+    border: 1px solid black;
+    background-color: white;
+    box-shadow: 1px 1px 3px black;
+    font-size: 0.9em;
+    text-align: left;
+    padding: 0.5em;
+    border-radius: 1em;
+}
+
+.chat {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-height: 100%;
+}
+
+.chat-usernames {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.currentUser {
+    background-color: #27F293;
+    margin-left: 40%;
+    text-align: right;
+    border-radius: 1em 0em 1em 1em;
+    margin-right: 0.5em;
+}
+
+.currentUserName {
+    text-align: right;
+    padding-right: 0.5em;
+}
+
+.otherUsers {
+    background-color: #B0C1D9;
+    margin-right: 40%;
+    border-radius: 0em 1em 1em 1em;
+}
+
+.currentUser, .otherUsers {
+    padding: 1em;
+    margin-top: 0;
+}
+
+.datetime {
+    display: block;
+    color: black;
+    font-size: 0.8em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+#message {
+    display: block;
+    margin: 1em auto;
+    width: 80%;
+}
+
+#userNameText, #sessionID {
+    display: none;
+    visibility: hidden;
+}
