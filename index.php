@@ -60,7 +60,7 @@
             $message = $_POST["f_Message"];
             $query = "Insert into $TableName (userName, dateTimeStamp, message, sessionID)
                                             Values (?, ?, ?, ?)";
-            $stmt = $mysqlObj->prepare($query);
+            $stmt = $conn->prepare($query);
             $BindSuccess = $stmt->bind_param("sssi", $userName, $dateTimeStamp, $message, $sessionID);
 
             if ($BindSuccess)
