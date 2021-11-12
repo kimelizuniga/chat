@@ -60,7 +60,7 @@
         }
 
         echo "<div id=\"container\" class=\"container\">
-            <a class=\"backBtn\" href=\"/index.php\">
+            <a class=\"backBtn\" href=\"./index.php\">
                 <i class=\"fas fa-chevron-circle-left\"></i>
             </a>
             <form action=\"index.php\" method=\"POST\">

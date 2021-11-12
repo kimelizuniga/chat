@@ -7,7 +7,7 @@ function WriteHeaders($Heading="Welcome", $TitleBar="MySite")
         <head>
             <meta charset = \"UTF-8\">
             <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.15.4/css/all.css\" integrity=\"sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm\" crossorigin=\"anonymous\">
-            <link rel =\"stylesheet\" type = \"text/css\" href=\"/public/stylesheets/index.css\"/>
+            <link rel =\"stylesheet\" type = \"text/css\" href=\"./public/stylesheets/index.css\"/>
             <title>$TitleBar</title>
             
         </head>
@@ -27,7 +27,7 @@ function WriteFooters()
 {
     DisplayContactInfo();
     echo "<script src=\"https://code.jquery.com/jquery-3.6.0.js\" integrity=\"sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\" crossorigin=\"anonymous\"></script>";
-    echo "<script src=\"/public/scripts/index.js\"></script>";
+    echo "<script src=\"./public/scripts/index.js\"></script>";
 
     echo "
     </body>
