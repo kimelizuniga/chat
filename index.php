@@ -4,7 +4,7 @@
 
     // House Keeping
     $conn;
-    $sessionID;
+    global $sessionID;
     $mysqlObj = new clsSQLConnection();
     $mysqlObj->CreateConnection($conn); // Creates the sql connection
 
@@ -33,6 +33,8 @@
     function DisplayMainPage(&$sessionID)
     {
         $sessionID = mt_rand();
+        $expire = time()+60*60*24*30;          
+        setcookie("userID", $sessionID, $expire,'/');
 
         echo "<form class=\"mainPage\" action=\"index.php\" method=\"POST\">";
         echo "<h1>Chat App</h1>";
@@ -52,8 +54,6 @@
         $mysqlObj->CreateConnection($conn);
         $userName = $_POST["f_Username"];
         $sessionID = $_POST["f_SessionID"];
-        $expire = time()+60*60*24*30;          
-        setcookie("userID", $sessionID, $expire,'/');
         $dateTimeStamp = date('Y-m-d') . " " . date('H:i:s');
 
         if (isset($_POST["f_Send"]))
