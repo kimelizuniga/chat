@@ -115,7 +115,7 @@ a:hover {
 
 .chat {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     min-height: 100%;
 }
 
