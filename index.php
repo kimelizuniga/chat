@@ -1,8 +1,6 @@
 <?php
     require_once('clsSQLConnection.php');
     require_once('KimInclude.php');
-    require_once('scripts/index.js');
-    require_once('stylesheets/index.css');
 
     // House Keeping
     $conn;
