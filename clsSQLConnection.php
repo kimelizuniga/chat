@@ -47,24 +47,22 @@ class clsSQLConnection
         $stmt->close();
     }
 
-    // public function SendData($conn)
-    // {
-    //     $userName = $_POST["f_Username"];
-    //     $message = $_POST["f_Message"];
-    //     $sessionID = $_POST["f_SessionID"];
-    //     $dateTimeStamp = date('Y-m-d') . " " . date('H:i:s');
-    //     $query = "Insert into $TableName (userName, dateTimeStamp, message, sessionID)
-    //                                     Values (?, ?, ?, ?)";
-    //     $stmt = $conn->prepare($query);
-    //     $BindSuccess = $stmt->bind_param("sssi", $userName, $dateTimeStamp, $message, $sessionID);
+    public function SendData($conn)
+    {
+        $TableName = 'Users';
+        $message = $_POST["f_Message"];
+        $query = "Insert into $TableName (userName, dateTimeStamp, message, sessionID)
+                                        Values (?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $BindSuccess = $stmt->bind_param("sssi", $userName, $dateTimeStamp, $message, $sessionID);
 
-    //     if ($BindSuccess)
-    //         $success = $stmt-> execute();
-    //     else
-    //         echo "Bind failed" . $stmt->error;
+        if ($BindSuccess)
+            $success = $stmt-> execute();
+        else
+            echo "Bind failed" . $stmt->error;
 
-    //     $stmt->close();
-    // }
+        $stmt->close();
+    }
 }
 
 ?>
