@@ -22,6 +22,7 @@
             else
                 DisplayMainPage($mysqlObj, $sessionID);
 
+    $mysqlObj->close();
     WriteFooters();
 
     // END OF MAIN
@@ -49,6 +50,8 @@
 
     function DisplayChat(&$mysqlObj, &$sessionID)
     {
+        $mysqlObj = new clsSQLConnection();
+        $mysqlObj->CreateConnection($conn);
         $TableName = 'Users';
         $userName = $_POST["f_Username"];
         $sessionID = $_POST["f_SessionID"];
@@ -74,30 +77,7 @@
         echo "
             </form>
             <div class=\"chatContainer\"><div id=\"chat\" class=\"chat\">";
-            $TableName = 'Users';
-            $query = "Select userName, dateTimeStamp, message, sessionID from $TableName order by dateTimeStamp desc limit 100";
-            $stmt = $conn->prepare($query);
-            $stmt->execute();
-            $stmt->bind_result($UserNames, $DateTimeStamps, $Messages, $SessionID);
-
-            while($stmt->fetch())
-            {
-                if($SessionID == $sessionID)
-                {
-                    echo "
-                        <p class=\"chat-usernames currentUserName\">$UserNames</p>
-                        <p class=\"currentUser\">$Messages</p>
-                        <span class=\"datetime\">$DateTimeStamps</span>";
-                }
-                else
-                {
-                    echo "
-                        <p class=\"chat-usernames\">$UserNames</p>
-                        <p class=\"otherUsers\">$Messages</p>
-                        <span class=\"datetime\">$DateTimeStamps</span>";
-                }
-            }
-            $stmt->close();
+            $mysqlObj->GetData($conn);
         echo "</div></div>";
         $stmt->close();
         echo "</div>";
