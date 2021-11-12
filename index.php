@@ -76,41 +76,33 @@
         echo "
             </form>
             <div class=\"chatContainer\"><div id=\"chat\" class=\"chat\">";
-            $mysqlObj->GetData($conn);
+            $TableName = 'Users';
+            $query = "Select userName, dateTimeStamp, message, sessionID from $TableName order by dateTimeStamp desc limit 100";
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+            $stmt->bind_result($UserNames, $DateTimeStamps, $Messages, $SessionID);
+
+            while($stmt->fetch())
+            {
+                if($SessionID == $sessionID)
+                {
+                    echo "
+                        <p class=\"chat-usernames currentUserName\">$UserNames</p>
+                        <p class=\"currentUser\">$Messages</p>
+                        <span class=\"datetime\">$DateTimeStamps</span>";
+                }
+                else
+                {
+                    echo "
+                        <p class=\"chat-usernames\">$UserNames</p>
+                        <p class=\"otherUsers\">$Messages</p>
+                        <span class=\"datetime\">$DateTimeStamps</span>";
+                }
+            }
+            $stmt->close();
         echo "</div></div>";
         $stmt->close();
         echo "</div>";
     }
     
 ?>
-
-<script type="text/javascript">
-    let chatDiv = document.getElementById('chat')
-    let sendBtn = document.getElementById('sendBtn')
-    let textArea = document.getElementById('message')
-
-    textArea.addEventListener("keyup", function(event){
-
-        if (event.key == 'Enter' && ! event.shiftKey) {
-            sendBtn.click()
-        }
-    })
-
-    $(document).ready(function() {
-        
-        setInterval(refreshMessage, 1000);
-        function refreshMessage(){
-            $.ajax({
-                url: 'chat.php',
-                type: 'GET',
-                dataType: 'html',
-                success: function(data) {
-                    $('#chat').html(data);
-                },
-                error: function() {
-                    $('#chat').prepend('Error retrieving new messages..');
-                }
-            });
-        }
-    });
-</script>
