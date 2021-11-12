@@ -10,7 +10,7 @@
 
     // MAIN
     WriteHeaders("Chat App");
-    
+
     if(isset($_POST["f_Start"]))
         DisplayChat($mysqlObj, $sessionID);
     else 
@@ -47,6 +47,7 @@
 
     function DisplayChat(&$mysqlObj, &$sessionID)
     {
+        $mysqlObj = new clsSQLConnection();
         $mysqlObj->CreateConnection($conn);
         $userName = $_POST["f_Username"];
         $sessionID = $_POST["f_SessionID"];
