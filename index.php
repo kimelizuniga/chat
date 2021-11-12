@@ -49,8 +49,6 @@
 
     function DisplayChat(&$mysqlObj, &$sessionID)
     {
-        $mysqlObj = new clsSQLConnection();
-        $mysqlObj->CreateConnection($conn);
         $TableName = 'Users';
         $userName = $_POST["f_Username"];
         $sessionID = $_POST["f_SessionID"];

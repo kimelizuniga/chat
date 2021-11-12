@@ -20,6 +20,8 @@ class clsSQLConnection
 
     public function GetData($conn)
     {
+        $mysqlObj = new clsSQLConnection();
+        $mysqlObj->CreateConnection($conn);
         $TableName = 'Users';
         $sessionID = $_COOKIE['userID'];
         $query = "Select userName, dateTimeStamp, message, sessionID from $TableName order by dateTimeStamp desc limit 100";
