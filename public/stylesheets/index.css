@@ -65,6 +65,7 @@ a:hover {
   height: 50vh;
   width: 55%;
   margin: auto;
+  box-shadow: 2px 2px 2px black;
   border-radius: 1em;
   background-color: #3d9df2;
   font-size: 1.1em;
