@@ -28,7 +28,37 @@ function WriteFooters()
     DisplayContactInfo();
     echo "<script src=\"https://code.jquery.com/jquery-3.6.0.js\" integrity=\"sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\" crossorigin=\"anonymous\"></script>";
     echo "<script src=\"/public/scripts/index.js\"></script>";
-    echo "
+
+    echo "<script>
+    let chatDiv = document.getElementById('chat')
+    let sendBtn = document.getElementById('sendBtn')
+    let textArea = document.getElementById('message')
+    
+    textArea.addEventListener(\"keyup\", function(event){
+    
+        if (event.key == 'Enter' && ! event.shiftKey) {
+            sendBtn.click()
+            }
+        })
+        
+        $(document).ready(function() {
+            
+            setInterval(refreshMessage, 1000);
+            function refreshMessage(){
+                $.ajax({
+                    url: 'chat.php',
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function(data) {
+                        $('#chat').html(data);
+                    },
+                    error: function() {
+                        $('#chat').prepend('Error retrieving new messages..');
+                    }
+                });
+            }
+        });
+         </script>
     </body>
     </html>
     ";
