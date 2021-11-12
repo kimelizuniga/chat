@@ -103,6 +103,7 @@
         echo "</div></div>";
         $stmt->close();
         echo "</div>";
+        WriteFooters();
     }
     
 ?>
