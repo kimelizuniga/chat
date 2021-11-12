@@ -116,7 +116,7 @@ a:hover {
 .chat {
     overflow-x: hidden;
     overflow-y: scroll;
-    min-height: 100%;
+    height: 100%;
 }
 
 .chat-usernames {
