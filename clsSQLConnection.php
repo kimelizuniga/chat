@@ -18,7 +18,7 @@ class clsSQLConnection
     $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     }
 
-    public function GetData(&$conn)
+    public function GetData($conn)
     {
         $TableName = 'Users';
         $sessionID = $_COOKIE['userID'];
@@ -45,6 +45,7 @@ class clsSQLConnection
             }
         }
         $stmt->close();
+        $conn->close();
     }
 
     public function SendData($conn)
@@ -66,6 +67,7 @@ class clsSQLConnection
             echo "Bind failed" . $stmt->error;
 
         $stmt->close();
+        $conn->close();
     }
 }
 
