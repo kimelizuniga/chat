@@ -56,7 +56,20 @@
         $dateTimeStamp = date('Y-m-d') . " " . date('H:i:s');
 
         if (isset($_POST["f_Send"]))
-            $mysqlObj->SendData($conn);
+        {
+            $message = $_POST["f_Message"];
+            $query = "Insert into $TableName (userName, dateTimeStamp, message, sessionID)
+                                            Values (?, ?, ?, ?)";
+            $stmt = $mysqlObj->prepare($query);
+            $BindSuccess = $stmt->bind_param("sssi", $userName, $dateTimeStamp, $message, $sessionID);
+
+            if ($BindSuccess)
+                $success = $stmt-> execute();
+            else
+                echo "Bind failed" . $stmt->error;
+
+            $stmt->close();
+        }
 
         echo "<div id=\"container\" class=\"container\">
             <a class=\"backBtn\" href=\"/chat/index.php\">
