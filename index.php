@@ -1,4 +1,5 @@
 <?php
+    define('PROJECT_ROOT_PATH', __DIR__);
     require_once('clsSQLConnection.php');
     require_once('KimInclude.php');
 
