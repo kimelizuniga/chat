@@ -58,18 +58,7 @@
 
         if (isset($_POST["f_Send"]))
         {
-            $message = $_POST["f_Message"];
-            $query = "Insert into $TableName (userName, dateTimeStamp, message, sessionID)
-                                            Values (?, ?, ?, ?)";
-            $stmt = $conn->prepare($query);
-            $BindSuccess = $stmt->bind_param("sssi", $userName, $dateTimeStamp, $message, $sessionID);
-
-            if ($BindSuccess)
-                $success = $stmt-> execute();
-            else
-                echo "Bind failed" . $stmt->error;
-
-            $stmt->close();
+            $mysqlObj->SendData($conn);
         }
 
         echo "<div id=\"container\" class=\"container\">
