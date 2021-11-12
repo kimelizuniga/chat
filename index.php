@@ -78,7 +78,6 @@
             <div class=\"chatContainer\"><div id=\"chat\" class=\"chat\">";
             $mysqlObj->GetData($conn);
         echo "</div></div>";
-        $stmt->close();
         echo "</div>";
     }
     

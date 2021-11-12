@@ -44,8 +44,6 @@ class clsSQLConnection
                     <span class=\"datetime\">$DateTimeStamps</span>";
             }
         }
-        $stmt->close();
-        $conn->close();
     }
 
     public function SendData($conn)
