@@ -67,7 +67,6 @@ class clsSQLConnection
             echo "Bind failed" . $stmt->error;
 
         $stmt->close();
-        $conn->close();
     }
 }
 

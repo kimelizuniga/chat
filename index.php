@@ -22,7 +22,6 @@
             else
                 DisplayMainPage($mysqlObj, $sessionID);
 
-    $mysqlObj->close();
     WriteFooters();
 
     // END OF MAIN
