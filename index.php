@@ -50,8 +50,6 @@
     function DisplayChat(&$mysqlObj, &$sessionID)
     {
         $TableName = 'Users';
-        $mysqlObj = new clsSQLConnection();
-        $mysqlObj->CreateConnection($conn);
         $userName = $_POST["f_Username"];
         $sessionID = $_POST["f_SessionID"];
         $dateTimeStamp = date('Y-m-d') . " " . date('H:i:s');
@@ -103,7 +101,6 @@
         echo "</div></div>";
         $stmt->close();
         echo "</div>";
-        WriteFooters();
     }
     
 ?>
