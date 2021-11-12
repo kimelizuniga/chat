@@ -51,6 +51,10 @@ class clsSQLConnection
     {
         $TableName = 'Users';
         $message = $_POST["f_Message"];
+        $userName = $_POST["f_Username"];
+        $sessionID = $_POST["f_SessionID"];
+        $dateTimeStamp = date('Y-m-d') . " " . date('H:i:s');
+        
         $query = "Insert into $TableName (userName, dateTimeStamp, message, sessionID)
                                         Values (?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
