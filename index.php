@@ -56,7 +56,7 @@
 
         if (isset($_POST["f_Send"]))
         {
-            $mysqlObj->SendData($conn);
+            $mysqlObj->SendData();
         }
 
         echo "<div id=\"container\" class=\"container\">
@@ -74,7 +74,7 @@
         echo "
             </form>
             <div class=\"chatContainer\"><div id=\"chat\" class=\"chat\">";
-            $mysqlObj->GetData($conn);
+            $mysqlObj->GetData();
         echo "</div></div>";
         echo "</div>";
     }

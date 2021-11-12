@@ -18,8 +18,9 @@ class clsSQLConnection
     $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
     }
 
-    public function GetData($conn)
+    public function GetData()
     {
+        $conn;
         $mysqlObj = new clsSQLConnection();
         $mysqlObj->CreateConnection($conn);
         $TableName = 'Users';
@@ -48,8 +49,11 @@ class clsSQLConnection
         }
     }
 
-    public function SendData($conn)
+    public function SendData()
     {
+        $conn;
+        $mysqlObj = new clsSQLConnection();
+        $mysqlObj->CreateConnection($conn);
         $TableName = 'Users';
         $message = $_POST["f_Message"];
         $userName = $_POST["f_Username"];
