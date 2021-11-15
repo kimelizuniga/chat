@@ -17,10 +17,6 @@ body {
   color: #000;
 }
 
-h1 {
-  margin-bottom: 2em;
-}
-
 h2 {
   margin: 1.2em;
   color: #f2f2f2;
@@ -34,7 +30,7 @@ footer {
 }
 
 button {
-  margin: 1em;
+  margin: 1.5em;
   min-width: 5em;
   font-weight: bold;
   font-size: 1em;
@@ -70,6 +66,10 @@ a:hover {
   border-radius: 1em;
   background-color: #3d9df2;
   font-size: 1.1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .userName {
@@ -78,7 +78,6 @@ a:hover {
 }
 
 .datapair {
-  margin-top: 1em;
   font-size: 1em;
 }
 
@@ -117,9 +116,16 @@ a:hover {
 }
 
 .chat {
+  display: flex;
+  flex-direction: column-reverse;
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
+}
+
+.chat div {
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-usernames {

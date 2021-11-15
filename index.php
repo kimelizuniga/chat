@@ -4,7 +4,7 @@
 
     // House Keeping
     $conn;
-    global $sessionID;
+    $sessionID = "";
     $mysqlObj = new clsSQLConnection();
     $mysqlObj->CreateConnection($conn); // Creates the sql connection
 
@@ -26,8 +26,6 @@
 
     // END OF MAIN
 
-    
-
     // FUNCTIONS
 
     function DisplayMainPage(&$sessionID)
@@ -38,12 +36,12 @@
 
         echo "<form class=\"mainPage\" action=\"index.php\" method=\"POST\">";
         echo "<h1>Chat App</h1>";
-        echo "<div class=\"datapair\"";
+        echo "<div class=\"datapair mainInput\"";
             DisplayLabel("Username: ");
             DisplayInput("text", "f_Username", 15);
             DisplayInput("text", "f_SessionID", 15, $sessionID, "", "sessionID");
-            DisplayButton("f_Start", "Start");
         echo "</div>";
+            DisplayButton("f_Start", "Start");
         echo "</form>";
     }
 
@@ -63,20 +61,21 @@
             <a class=\"backBtn\" href=\"./index.php\">
                 <i class=\"fas fa-chevron-circle-left\"></i>
             </a>
-            <form action=\"index.php\" method=\"POST\">
-                <h2>Welcome <span class=\"userName\">$userName</span></h2>";
+            <h2>Welcome <span class=\"userName\">$userName</span></h2>
+            <div class=\"chatContainer\"><div id=\"chat\" class=\"chat\">";
+                $mysqlObj->GetData($conn);
+        echo "</div></div>";
+        echo "<form action=\"?\" method=\"POST\">";
                     DisplayInput("text", "f_Username", 15, $userName, "", "userNameText");
                     DisplayInput("text", "f_SessionID", 15, $sessionID, "", "sessionID");
         echo"   <div class=\"datapair\">
                     <textarea name=\"f_Message\" id=\"message\" cols=\"50\" rows=\"4\" placeholder=\"Type here...\" autofocus></textarea>
                     <button name=\"f_Send\" id=\"sendBtn\">Send</button>";
-        echo "  </div>";
-        echo "
-            </form>
-            <div class=\"chatContainer\"><div id=\"chat\" class=\"chat\">";
-            $mysqlObj->GetData($conn);
-        echo "</div></div>";
+        echo "</form></div>";
         echo "</div>";
+
+        echo "<script src=\"https://code.jquery.com/jquery-3.6.0.js\" integrity=\"sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\" crossorigin=\"anonymous\"></script>";
+        echo "<script src=\"./public/scripts/index.js\"></script>";
     }
     
 ?>
