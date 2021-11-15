@@ -116,16 +116,13 @@ a:hover {
 }
 
 .chat {
-  display: flex;
-  flex-direction: column-reverse;
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
 }
 
-.chat div {
-  display: flex;
-  flex-direction: column;
+.chatSend {
+
 }
 
 .chat-usernames {

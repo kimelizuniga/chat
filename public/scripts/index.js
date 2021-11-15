@@ -9,7 +9,7 @@ textArea.addEventListener("keyup", function (event) {
 });
 
 $(document).ready(function () {
-  setInterval(refreshMessage, 1000);
+  setInterval(refreshMessage, 3000);
   function refreshMessage() {
     $.ajax({
       url: "chat.php",
