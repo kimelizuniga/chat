@@ -16,7 +16,7 @@ $(document).ready(function () {
       type: "GET",
       dataType: "html",
       success: function (data) {
-        $("#chat").append(data);
+        $("#chat").html(data);
       },
       error: function () {
         $("#chat").prepend("Error retrieving new messages..");
