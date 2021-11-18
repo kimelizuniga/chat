@@ -40,7 +40,7 @@ function DisplayLabel($prompt)
 function DisplayInput($Type, $Name, $Size, $Value="", $Placeholder="", $Id="")
 {
     echo "<input id=\"$Id\" type = \"$Type\" placeholder=\"$Placeholder\" 
-         name = \"$Name\" Size = \"$Size\" value = \"$Value\" autocomplete=\"off\" required>";
+         name = \"$Name\" Size = \"$Size\" value = \"$Value\" autocomplete=\"off\">";
 }   
 
 function DisplayImage($FileName, $alt, $height, $width)

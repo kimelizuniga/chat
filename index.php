@@ -1,6 +1,7 @@
 <?php
     require_once('clsSQLConnection.php');
     require_once('KimInclude.php');
+    date_default_timezone_set('America/Toronto');
 
     // House Keeping
     $conn;
@@ -20,7 +21,13 @@
             if(isset($_POST["f_Home"]))
                 DisplayMainPage($mysqlObj, $sessionID);
             else
-                DisplayMainPage($mysqlObj, $sessionID);
+                if(isset($_POST["f_Register"]))
+                    DisplayRegisterForm();
+                else
+                    if(isset($_POST["f_RegisterSubmit"]))
+                        DisplayRegister($mysqlObj, $conn);
+                    else
+                        DisplayMainPage($mysqlObj, $sessionID);
 
     WriteFooters();
 
@@ -42,6 +49,7 @@
             DisplayInput("text", "f_SessionID", 15, $sessionID, "", "sessionID");
         echo "</div>";
             DisplayButton("f_Start", "Start");
+            DisplayButton("f_Register", "Register");
         echo "</form>";
     }
 
@@ -76,6 +84,26 @@
 
         echo "<script src=\"https://code.jquery.com/jquery-3.6.0.js\" integrity=\"sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=\" crossorigin=\"anonymous\"></script>";
         echo "<script src=\"./public/scripts/index.js\"></script>";
+    }
+
+    function DisplayRegisterForm()
+    {
+        echo "<form action=\"?\" method=\"POST\">";
+            DisplayLabel("Username:");
+            DisplayInput("text", "f_UserName", "15");
+            DisplayLabel("First Name:");
+            DisplayInput("text", "f_FirstName", "15");
+            DisplayLabel("Last Name:");
+            DisplayInput("text", "f_LastName", "15");
+            DisplayLabel("Password (8 character minimum):");
+        echo "<input type=\"password\" name=\"f_Password\" minlength=\"8\" required id=\"pass\">";
+            DisplayButton("f_RegisterSubmit", "Register");
+        echo "</form>";
+    }
+
+    function DisplayRegister(&$mysqlObj, $conn)
+    {
+        $mysqlObj->Register($conn);
     }
     
 ?>
