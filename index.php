@@ -9,7 +9,7 @@ $authenticated = false;
 WriteHeaders("Chat App", "Chat App");
 
 if(isset($_GET["success"]) && isset($_GET["success"]) == "r9q2l5k6xs3m5")
-    echo "Registered Successfully";
+    echo "<span class=\"warning\">Registered Successfully</span>";
 
 if(isset($_POST["f_Login"]))
 {
