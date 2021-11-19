@@ -8,6 +8,9 @@ date_default_timezone_set('America/Toronto');
 
 WriteHeaders("Register", "Register");
 
+if(isset($_GET["failed"]) && isset($_GET["failed"]) == "lo2p3ldms0381")
+    echo "Failed to register";
+
 if(isset($_POST["f_RegisterSubmit"]))
     DisplayRegister();
 else
