@@ -1,10 +1,9 @@
 <?php
     require_once("clsSQLConnection.php");
 
-    $conn;
     $mysqlObj = new clsSQLConnection();
-    $mysqlObj->CreateConnection($conn);
+    $mysqlObj->CreateConnection();
 
-    $mysqlObj->GetData($conn);
+    $mysqlObj->GetData();
 
 ?>

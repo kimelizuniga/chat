@@ -47,6 +47,10 @@ button:hover {
   cursor: pointer;
 }
 
+label {
+  display: block;
+}
+
 a {
   text-decoration: none;
   text-shadow: 1px 1px 1px black;
@@ -57,8 +61,8 @@ a:hover {
   color: #79baf2;
 }
 
-.mainPage {
-  height: 50vh;
+.mainContainer {
+  height: 60vh;
   width: 55%;
   margin: auto;
   box-shadow: 2px 2px 2px black;
@@ -79,6 +83,7 @@ a:hover {
 
 .datapair {
   font-size: 1em;
+  padding: 0.5em;
 }
 
 .backBtn {
@@ -118,6 +123,7 @@ a:hover {
 .chat {
   overflow-x: hidden;
   overflow-y: scroll;
+  min-height: 60vh;
   height: 100%;
 }
 

@@ -2,7 +2,7 @@
 
 class clsSQLConnection
 {
-    public function CreateConnection(&$conn)
+    public function CreateConnection()
     {
     // Get Heroku ClearDB connection information
     // $cleardb_url            = parse_url(getenv("CLEARDB_DATABASE_URL"));
@@ -19,24 +19,30 @@ class clsSQLConnection
 
     // Connect to local DB
     $conn = new mysqli ("localhost", "root", "mysql", "chat");
+
+    return $conn;
     }
 
-    public function GetData($conn)
+    public function GetData()
     {
-        $TableName = 'Users';
-        $sessionID = $_COOKIE['userID'];
-        $query = "Select userName, dateTimeStamp, message, sessionID from $TableName order by dateTimeStamp desc limit 100";
+        $conn = $this->CreateConnection();
+        $TableName = 'user_messages';
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $userName = $_SESSION["userName"];
+        $query = "Select user_name, messages, dateTimeStamp from $TableName order by dateTimeStamp desc limit 100";
         $stmt = $conn->prepare($query);
         $stmt->execute();
-        $stmt->bind_result($UserNames, $DateTimeStamps, $Messages, $SessionID);
+        $stmt->bind_result($UserName, $Messages, $DateTimeStamps);
 
         while($stmt->fetch())
         {
-            if($SessionID == $sessionID)
+            if($userName == $UserName)
             {
                 echo "
                     <div>
-                    <p class=\"chat-usernames currentUserName\">$UserNames</p>
+                    <p class=\"chat-usernames currentUserName\">$UserName</p>
                     <p class=\"currentUser\">$Messages</p>
                     <span class=\"datetime\">$DateTimeStamps</span>
                     </div>";
@@ -45,7 +51,7 @@ class clsSQLConnection
             {
                 echo "
                     <div>
-                    <p class=\"chat-usernames\">$UserNames</p>
+                    <p class=\"chat-usernames\">$UserName</p>
                     <p class=\"otherUsers\">$Messages</p>
                     <span class=\"datetime\">$DateTimeStamps</span>
                     </div>";
@@ -53,18 +59,17 @@ class clsSQLConnection
         }
     }
 
-    public function SendData($conn)
+    public function SendData($userName)
     {
-        $TableName = 'Users';
+        $conn = $this->CreateConnection();
+        $TableName = 'user_messages';
         $message = $_POST["f_Message"];
-        $userName = $_POST["f_Username"];
-        $sessionID = $_POST["f_SessionID"];
         $dateTimeStamp = date('Y-m-d') . " " . date('H:i:s');
         
-        $query = "Insert into $TableName (userName, dateTimeStamp, message, sessionID)
-                                        Values (?, ?, ?, ?)";
+        $query = "Insert into $TableName (user_name, messages, dateTimeStamp)
+                                        Values (?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $BindSuccess = $stmt->bind_param("sssi", $userName, $dateTimeStamp, $message, $sessionID);
+        $BindSuccess = $stmt->bind_param("sss", $userName, $message, $dateTimeStamp);
 
         if ($BindSuccess)
             $success = $stmt-> execute();
@@ -74,8 +79,10 @@ class clsSQLConnection
         $stmt->close();
     }
 
-    public function Register($conn)
+    public function Register()
     {
+        $conn = $this->CreateConnection();
+        $registered = false;
         $TableName = "user_info";
         $user_name = $_POST["f_UserName"];
         $first_name = $_POST["f_FirstName"];
@@ -98,9 +105,54 @@ class clsSQLConnection
             echo "Bind failed" . $stmt->error;
 
         if($success)
+        {
             echo "Registered Successfully";
+            $registered = true;
+        }
 
         $stmt->close();
+
+        return $registered;
+    }
+
+    public function Login()
+    {
+        $conn = $this->CreateConnection();
+        $TableName = "user_info";
+        $userName = $_POST["f_UserName"];
+        $userPass = $_POST["f_Password"];
+        $authenticated = false;
+
+        $query = "Select user_name, user_pass from $TableName where user_name = ?";
+        $stmt = $conn->prepare($query);
+
+        $BindSuccess = $stmt->bind_param("s", $userName);
+
+        if ($BindSuccess)
+            $success = $stmt->bind_result($user_name, $user_pass);
+        else
+            echo "Bind failed";
+
+        if ($success)
+            $stmt->execute();
+        else
+            echo "Bind failed";
+
+        $stmt->fetch();
+
+        if(password_verify($userPass, $user_pass))
+        {
+            echo "Login success";
+            $authenticated = true;
+            session_start();
+            $_SESSION["userName"] =  $userName;
+        }
+        else
+            echo "Failed login attempt";
+
+        $stmt->close();
+
+        return $authenticated;
     }
 }
 
