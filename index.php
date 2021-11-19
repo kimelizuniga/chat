@@ -18,19 +18,13 @@ if(isset($_POST["f_Login"]))
 
     $authenticated = $mysqlObj->Login();
     if($authenticated)
-    {
-        $mysqlObj->close();
         DisplayChat();
-    }
     else
         DisplayMainPage();
 }
 else
     if(isset($_POST["f_Send"]))
-    {
-        $mysqlObj->close();
         DisplayChat();
-    }
     else
         DisplayMainPage();
 
