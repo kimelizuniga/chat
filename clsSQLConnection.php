@@ -110,7 +110,10 @@ class clsSQLConnection
             $registered = true;
         }
         else
+        {
             echo "Register failed";
+            header("Location: /register.php");
+        }
 
         $stmt->close();
 
