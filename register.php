@@ -27,15 +27,15 @@ function DisplayRegisterForm()
           </a>";
     echo "<div class=\"datapair\">";
         DisplayLabel("Username:");
-        DisplayInput("text", "f_UserName", "15");
+    echo "<input type=\"text\" name=\"f_UserName\" size=\"15\" required>";
     echo "</div>";
     echo "<div class=\"datapair\">";
         DisplayLabel("First Name:");
-        DisplayInput("text", "f_FirstName", "15");
+    echo "<input type=\"text\" name=\"f_FirstName\" size=\"15\" required>";
     echo "</div>";
     echo "<div class=\"datapair\">";
         DisplayLabel("Last Name:");
-        DisplayInput("text", "f_LastName", "15");
+    echo "<input type=\"text\" name=\"f_LastName\" size=\"15\" required>";
     echo "</div>";
     echo "<div class=\"datapair\">";
         DisplayLabel("Password (8 character minimum):");
