@@ -109,6 +109,8 @@ class clsSQLConnection
             echo "Registered Successfully";
             $registered = true;
         }
+        else
+            echo "Register failed";
 
         $stmt->close();
 

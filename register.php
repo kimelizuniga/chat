@@ -51,7 +51,7 @@ function DisplayRegister()
 
     if($mysqlObj->Register())
     {
-        header("Location: http://localhost/chat-app?success=r9q2l5k6xs3m5");
+        header("Location: /?success=r9q2l5k6xs3m5");
         exit();
     }
 }
