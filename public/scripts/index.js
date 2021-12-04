@@ -1,6 +1,7 @@
 let chatDiv = document.getElementById("chat");
 let sendBtn = document.getElementById("sendBtn");
 let textArea = document.getElementById("message");
+let logout = document.getElementById("logout");
 
 textArea.addEventListener("keyup", function (event) {
   if (event.key == "Enter" && !event.shiftKey) {

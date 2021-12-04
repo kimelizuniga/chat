@@ -65,7 +65,7 @@ a:hover {
   height: 60vh;
   width: 55%;
   margin: auto;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 0px 0px 10px 2px black;
   border: 1px solid black;
   border-radius: 1em;
   background-color: #3d9df2;
@@ -166,8 +166,17 @@ a:hover {
 }
 
 .warning {
-  margin-top: 0.5em;
-  font-size: 1em;
+  background-color: #f14e4e;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.success {
+  background-color: #27f293;
+  padding: 0.5em;
+  font-weight: bold;
+  margin-top: 0;
 }
 
 #message {

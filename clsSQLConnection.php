@@ -5,20 +5,20 @@ class clsSQLConnection
     public function CreateConnection()
     {
     // Get Heroku ClearDB connection information
-    $cleardb_url            = parse_url(getenv("CLEARDB_DATABASE_URL"));
-    $cleardb_server         = $cleardb_url["host"];
-    $cleardb_username       = $cleardb_url["user"];
-    $cleardb_password       = $cleardb_url["pass"];
-    $cleardb_db             = substr($cleardb_url["path"], 1);
+    // $cleardb_url            = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    // $cleardb_server         = $cleardb_url["host"];
+    // $cleardb_username       = $cleardb_url["user"];
+    // $cleardb_password       = $cleardb_url["pass"];
+    // $cleardb_db             = substr($cleardb_url["path"], 1);
 
-    $active_group = 'default';
-    $query_builder = TRUE;
+    // $active_group = 'default';
+    // $query_builder = TRUE;
 
-    // Connect to DB
-    $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+    // // Connect to DB
+    // $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
     // Connect to local DB
-    // $conn = new mysqli ("localhost", "root", "mysql", "chat");
+    $conn = new mysqli ("localhost", "root", "mysql", "chat");
 
     return $conn;
     }
@@ -106,12 +106,12 @@ class clsSQLConnection
 
         if($success)
         {
-            echo "Registered Successfully";
+            echo "<p class=\"success\">Registered Successfully</p>";
             $registered = true;
         }
         else
         {
-            header("Location: /register.php?failed=lo2p3ldms0381");
+            header("Location: ./register.php?failed=lo2p3ldms0381");
         }
 
         $stmt->close();
@@ -146,13 +146,14 @@ class clsSQLConnection
 
         if(password_verify($userPass, $user_pass))
         {
-            echo "Login success";
+            echo "<p class=\"success\">Login success</p>";
             $authenticated = true;
-            session_start();
+            if(session_status() == PHP_SESSION_NONE)
+                session_start();
             $_SESSION["userName"] =  $userName;
         }
         else
-            echo "Failed login attempt";
+            echo "<p class=\"warning\">Failed login attempt</p>";
 
         $stmt->close();
 

@@ -5,28 +5,34 @@ date_default_timezone_set('America/Toronto');
 
 // MAIN
 $authenticated = false;
+if(session_status() == PHP_SESSION_NONE)
+    session_start();
 
 WriteHeaders("Chat App", "Chat App");
 
 if(isset($_GET["success"]) && isset($_GET["success"]) == "r9q2l5k6xs3m5")
-    echo "<span class=\"warning\">Registered Successfully</span>";
+    echo "<p class=\"success\">Registered Successfully</p>";
 
-if(isset($_POST["f_Login"]))
-{
-    $mysqlObj = new clsSQLConnection();
-    $conn = $mysqlObj->CreateConnection();
 
-    $authenticated = $mysqlObj->Login();
-    if($authenticated)
-        DisplayChat();
-    else
-        DisplayMainPage();
-}
+if(isset($_SESSION["userName"]))
+    DisplayChat();
 else
-    if(isset($_POST["f_Send"]))
-        DisplayChat();
+    if(isset($_POST["f_Login"]))
+    {
+        $mysqlObj = new clsSQLConnection();
+        $conn = $mysqlObj->CreateConnection();
+
+        $authenticated = $mysqlObj->Login();
+        if($authenticated)
+            DisplayChat();
+        else
+            DisplayMainPage();
+    }
     else
-        DisplayMainPage();
+        if(isset($_POST["f_Send"]))
+            DisplayChat();
+        else
+            DisplayMainPage();
 
 WriteFooters();
 
@@ -55,19 +61,17 @@ function DisplayChat()
 {
     $mysqlObj = new clsSQLConnection();
     $conn = $mysqlObj->CreateConnection();
-    if (session_status() == PHP_SESSION_NONE) {
+    if (session_status() == PHP_SESSION_NONE) 
         session_start();
-    }
+    
     $userName = $_SESSION["userName"];
     $dateTimeStamp = date('Y-m-d') . " " . date('H:i:s');
 
     if (isset($_POST["f_Send"]))
-    {
         $mysqlObj->SendData($userName);
-    }
 
     echo "<div id=\"container\" class=\"container\">
-        <a class=\"backBtn\" href=\"./index.php\">
+        <a id=\"logout\" class=\"backBtn\" href=\"./logout.php\">
             <i class=\"fas fa-chevron-circle-left\"></i>
         </a>
         <h2>Welcome <span class=\"userName\">$userName</span></h2>";
