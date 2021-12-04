@@ -4,14 +4,23 @@ require_once('KimInclude.php');
 date_default_timezone_set('America/Toronto');
 
 // MAIN
-$authenticated = false;
+
 if(session_status() == PHP_SESSION_NONE)
     session_start();
 
 WriteHeaders("Chat App", "Chat App");
 
-if(isset($_GET["success"]) && isset($_GET["success"]) == "r9q2l5k6xs3m5")
+if(isset($_SESSION["register"]))
+{
     echo "<p class=\"success\">Registered Successfully</p>";
+    unset ($_SESSION["register"]);
+}
+else
+    if(isset($_SESSION["logout"]))
+    {
+        echo "<p class=\"success\">Logged out successfully!</p>";
+        unset ($_SESSION["logout"]);
+    }
 
 
 if(isset($_SESSION["userName"]))
@@ -19,6 +28,7 @@ if(isset($_SESSION["userName"]))
 else
     if(isset($_POST["f_Login"]))
     {
+        $authenticated = false;
         $mysqlObj = new clsSQLConnection();
         $conn = $mysqlObj->CreateConnection();
 

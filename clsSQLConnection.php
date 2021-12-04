@@ -111,7 +111,8 @@ class clsSQLConnection
         }
         else
         {
-            header("Location: ./register.php?failed=lo2p3ldms0381");
+            $_SESSION["failed"] = true;
+            header("Location: ./register.php");
         }
 
         $stmt->close();

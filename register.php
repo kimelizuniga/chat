@@ -6,10 +6,16 @@ date_default_timezone_set('America/Toronto');
 
 // REGISTER MAIN
 
+if(session_status() == PHP_SESSION_NONE)
+    session_start();
 WriteHeaders("Register", "Register");
 
-if(isset($_GET["failed"]) && isset($_GET["failed"]) == "lo2p3ldms0381")
+if(isset($_SESSION["failed"]))
+{
     echo "<span class=\"warning\">Failed to register</span>";
+    unset ($_SESSION["failed"]);
+}
+    
 
 if(isset($_POST["f_RegisterSubmit"]))
     DisplayRegister();
@@ -50,11 +56,15 @@ function DisplayRegisterForm()
 
 function DisplayRegister()
 {
+    if(session_status() == PHP_SESSION_NONE)
+        session_start();
+
     $mysqlObj = new clsSQLConnection();
 
     if($mysqlObj->Register())
     {
-        header("Location: ./?success=r9q2l5k6xs3m5");
+        $_SESSION["register"] = true;
+        header("Location: ./");
         exit();
     }
 }
