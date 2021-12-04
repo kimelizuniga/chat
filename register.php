@@ -25,7 +25,7 @@ WriteFooters();
 function DisplayRegisterForm()
 {
     echo "<form class=\"mainContainer\" action=\"?\" method=\"POST\">";
-    echo "<a class=\"backBtn\" href=\"./index.php\">
+    echo "<a class=\"backBtn\" href=\"./\">
             <i class=\"fas fa-chevron-circle-left\"></i>
           </a>";
     echo "<div class=\"datapair\">";
