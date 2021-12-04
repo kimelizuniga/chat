@@ -17,7 +17,7 @@ class clsSQLConnection
     // Connect to DB
     $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
-    // Connect to local DB
+    // // Connect to local DB
     // $conn = new mysqli ("localhost", "root", "mysql", "chat");
 
     return $conn;
@@ -38,7 +38,7 @@ class clsSQLConnection
 
         while($stmt->fetch())
         {
-            if($userName == $UserName)
+            if(strtolower($userName) == strtolower($UserName))
             {
                 echo "
                     <div>

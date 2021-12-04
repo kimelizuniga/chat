@@ -74,7 +74,7 @@ function DisplayChat()
         <a id=\"logout\" class=\"backBtn\" href=\"./logout.php\">
             <i class=\"fas fa-chevron-circle-left\"></i>
         </a>
-        <h2>Welcome <span class=\"userName\">$userName</span></h2>";
+        <h2>Welcome <span class=\"userName\">". strtolower($userName) . "</span></h2>";
     echo "<form action=\"?\" method=\"POST\">";
     echo"   <div class=\"datapair chatSend\">
                 <textarea name=\"f_Message\" id=\"message\" cols=\"50\" rows=\"4\" placeholder=\"Type here...\" autofocus type=\"submit\"></textarea>
